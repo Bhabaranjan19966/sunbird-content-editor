@@ -23,7 +23,7 @@ node() {
                       sed -i 's:/api:/action:g' content-editor/scripts/base-editor.min.*.js
                       sed -i 's/useProxyForURL:true/useProxyForURL:false/g' content-editor/scripts/base-editor.min.*.js
                       sed -i -e 's/dispatcher:\"local\"/dispatcher:\"piwik\"/g' content-editor/scripts/*
-                      az storage blob upload-batch --destination ${params.container_name}/content-editor/ --source content-editor --account-name $azure_account_name --account-key $azure_account_key
+                      az storage blob upload-batch --destination ${params.container_name}/content-editor --source content-editor --account-name $azure_account_name --account-key $azure_account_key
                       zip -r content-editor-artifact.zip content-editor
                       cd content-editor
                       npm install
@@ -33,8 +33,8 @@ node() {
                       gulp clean
                       gulp injectrenamedfiles
                       gulp package
-                      az storage blob upload-batch --destination ${params.container_name}/artefacts/editor/ --source dist/editor --account-name $azure_account_name --account-key $azure_account_key
-                      az storage blob upload-batch --destination ${params.container_name}/artefacts/coreplugins/ --source dist/coreplugins --account-name $azure_account_name --account-key $azure_account_key
+                      az storage blob upload-batch --destination ${params.container_name}/artefacts/editor --source dist/editor --account-name $azure_account_name --account-key $azure_account_key
+                      az storage blob upload-batch --destination ${params.container_name}/artefacts/coreplugins --source dist/coreplugins --account-name $azure_account_name --account-key $azure_account_key
                       rm -rf node_modules
                       cd ..
                       zip -r content-editor.zip content-editor
